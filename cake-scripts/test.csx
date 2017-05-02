@@ -13,6 +13,6 @@ Task("dotnetTest")
 
     foreach (var file in files)
     {
-      Run("dotnet", $"test {file}");
+      Run("dotnet", "test " + file);
     }
   });
