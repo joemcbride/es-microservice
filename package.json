@@ -1,0 +1,62 @@
+{
+  "name": "es-api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Joe McBride",
+  "license": "MIT",
+  "scripts": {
+    "start": "better-npm-run dotnetServer",
+    "compile": "yarn && better-npm-run compile",
+    "build": "yarn && better-npm-run build",
+    "release": "yarn && better-npm-run release",
+    "test": "better-npm-run test"
+  },
+  "betterScripts": {
+    "compile": {
+      "command": "node switch.js -t compile",
+      "env": {
+        "NODE_ENV": "development",
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "ASPNETCORE_URLS": "http://localhost:5000"
+      }
+    },
+    "build": {
+      "command": "node switch.js -t publish",
+      "env": {
+        "NODE_ENV": "development",
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "ASPNETCORE_URLS": "http://localhost:5000"
+      }
+    },
+    "release": {
+      "command": "node switch.js -t publish",
+      "env": {
+        "NODE_ENV": "production",
+        "ASPNETCORE_ENVIRONMENT": "Production",
+        "ASPNETCORE_URLS": "http://localhost:5000"
+      }
+    },
+    "dotnetServer": {
+      "command": "node switch.js -t server",
+      "env": {
+        "NODE_ENV": "development",
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "ASPNETCORE_URLS": "http://localhost:5000"
+      }
+    },
+    "test": {
+      "command": "node switch.js -t test",
+      "env": {
+        "NODE_ENV": "development",
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "ASPNETCORE_URLS": "http://localhost:5000"
+      }
+    }
+  },
+  "dependencies": {
+  },
+  "devDependencies": {
+    "better-npm-run": "^0.0.13",
+    "shelljs": "^0.7.6"
+  }
+}
