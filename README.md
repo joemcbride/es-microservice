@@ -4,7 +4,7 @@ This is a basic setup for a microservice secured with JWT.
 
 ## Building
 
-This project is setup with a Cake build system.  It uses `yarn` + `switch.js` to determine which cake build script to use (`build.ps1` or `build.sh`).
+This project is setup with a Cake build system.  It uses `yarn` + `switch.js` to determine which cake build script to use (`build.ps1` or `build.sh`) depending on your OS.
 
 * `yarn compile` install node modules + compile project
 * `yarn start` runs the `ES.Api` project using `dotnet watch`
