@@ -54,7 +54,7 @@
       }
     },
     "ci": {
-      "command": "node switch.js",
+      "command": "node switch.js ci",
       "env": {
         "NODE_ENV": "production",
         "ASPNETCORE_ENVIRONMENT": "Production",
