@@ -22,4 +22,10 @@ Task("test")
     .IsDependentOn("compile")
     .IsDependentOn("dotnetTest");
 
+Task("ci")
+    .IsDependentOn("clobber")
+    .IsDependentOn("yarn")
+    .IsDependentOn("test")
+    .IsDependentOn("publish");
+
 RunTarget(target);

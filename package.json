@@ -9,7 +9,8 @@
     "compile": "yarn && better-npm-run compile",
     "build": "yarn && better-npm-run build",
     "release": "yarn && better-npm-run release",
-    "test": "better-npm-run test"
+    "test": "better-npm-run test",
+    "ci": "yarn && better-npm-run ci"
   },
   "betterScripts": {
     "compile": {
@@ -49,6 +50,14 @@
       "env": {
         "NODE_ENV": "development",
         "ASPNETCORE_ENVIRONMENT": "Development",
+        "ASPNETCORE_URLS": "http://localhost:5000"
+      }
+    },
+    "ci": {
+      "command": "node switch.js",
+      "env": {
+        "NODE_ENV": "production",
+        "ASPNETCORE_ENVIRONMENT": "Production",
         "ASPNETCORE_URLS": "http://localhost:5000"
       }
     }
