@@ -5,12 +5,12 @@ using ES.Api;
 
 namespace ES.Api.Identity
 {
-    public class CertificateLoader : ICertificateLoader
+    public class StoreCertificateLoader : ICertificateLoader
     {
         private readonly IHostingEnvironment _env;
         private readonly TokenSettings _tokenSettings;
 
-        public CertificateLoader(IHostingEnvironment env, TokenSettings tokenSettings)
+        public StoreCertificateLoader(IHostingEnvironment env, TokenSettings tokenSettings)
         {
             _env = env;
             _tokenSettings = tokenSettings;

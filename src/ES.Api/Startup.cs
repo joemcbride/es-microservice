@@ -31,14 +31,15 @@ namespace ES.Api
         public void ConfigureServices(IServiceCollection services)
         {
             var apiSettings = Configuration.Get<ApiSettings>();
+            var tokenSettings = Configuration.Get<TokenSettings>();
 
             services.AddSingleton<IConfigurationRoot>(Configuration);
-            services.AddSingleton(Configuration.Get<TokenSettings>());
-            services.AddSingleton<ICertificateLoader, CertificateLoader>();
+            services.AddSingleton(tokenSettings);
+            services.AddSingleton<ICertificateLoader, StoreCertificateLoader>();
 
-            if(RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+            if(tokenSettings.Mode == "Local")
             {
-                services.AddSingleton<ICertificateLoader, MacOSCertificateLoader>();
+                services.AddSingleton<ICertificateLoader, LocalCertificateLoader>();
             }
 
             services.AddCors(options =>
