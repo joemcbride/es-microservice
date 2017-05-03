@@ -64,44 +64,9 @@ namespace ES.Api
 
             app.UseCors("Origin");
 
-            app.UseJwtBearerAuthentication(new JwtBearerOptions
-            {
-                AutomaticAuthenticate = true,
-                AutomaticChallenge = true,
-                TokenValidationParameters =
-                    createTokenParameters(app.ApplicationServices.GetService<ICertificateLoader>()),
-            });
+            app.UseJwtAuthentication(app.ApplicationServices.GetService<ICertificateLoader>());
 
             app.UseMvc();
-        }
-
-        private TokenValidationParameters createTokenParameters(ICertificateLoader certLoader)
-        {
-            var certificate = certLoader.Load();
-            var tokenValidationParameters = new TokenValidationParameters
-            {
-                // Token signature will be verified using a private key.
-                ValidateIssuerSigningKey = true,
-                RequireSignedTokens = true,
-                IssuerSigningKey = new X509SecurityKey(certificate),
-
-                // Token will only be valid if contains "example.com" for "iss" claim.
-                ValidateIssuer = false,
-//                ValidIssuer = "example.com",
-
-                // Token will only be valid if contains "example.com" for "aud" claim.
-                ValidateAudience = false,
-//                ValidAudience = "example.com",
-
-                // Token will only be valid if not expired yet, with clock skew.
-                ValidateLifetime = true,
-                RequireExpirationTime = true,
-                ClockSkew = TimeSpan.Zero,
-
-                ValidateActor = false,
-            };
-
-            return tokenValidationParameters;
         }
     }
 }
