@@ -7,5 +7,9 @@ using System.Linq;
 
 Task("dotnetCompile").Does(()=>
   {
-    Run("dotnet", "build src");
+    var config = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Production"
+      ? "Release"
+      : "Debug";
+
+    Run("dotnet", string.Format("build src -c {0}", config));
   });
